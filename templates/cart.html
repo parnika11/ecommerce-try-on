@@ -19,9 +19,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar d-flex flex-row site-menu navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Virtual Try On</a>
+			<!-- <a class="navbar-brand" href="#">Virtual Try On</a> -->
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
@@ -106,9 +106,22 @@
 			</div>
 		</div>
 	</nav>
-<div id="cartItems">
-	<h2>Shopping Cart</h2>
-	<div id="tableItems">
+<div  id="cartItems">
+  <div class="col-sm-6 container mt-5 mx-auto">
+	<!-- <h2 class="text-center">Shopping Cart</h2> -->
+	<div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 mt-3"></div>
+	<div class="card">
+		<div class="card-header">
+		  <div class="row pt-3 pb-3">
+			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 ">
+			  <span style="font-size:20px;font-weight:700;color:grey;color:black">My Cart</span>
+			</div>
+			<!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12  text-right">
+			  <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;Deliver to &nbsp;<input type="text" placeholder="user name and address">
+			</div> -->
+		  </div>
+		</div>
+	<div id="tableItems" class="col-sm-8 mt-5 mx-auto">
 		{% for row in products %}
 		<div>
 			<hr id="seperator">
@@ -121,17 +134,73 @@
 				<a href="/removeFromCart?productId={{row[0]}}">Remove</a>
 			</div>
 			<div id="itemPrice">
-				Rs {{row[2]}}
+				 Rs {{row[2]}}
 			</div>
 		</div>
 		{% endfor %}
 		<hr id="seperator">
-		<div id="total">
-			<span id="subtotal">Subtotal</span> : Rs {{totalPrice}}
-		</div>
 	</div>
+		<div  id="total">
+			<span id="subtotal">Total</span>: Rs {{totalPrice}}
+		</div>
 </div>
-<a href="/checkout">Proceed to checkout</a>
+<div class="text-center">
+	<button type="button" class="btn btn-success"><a class="text-white" href="/checkout">Checkout</a></button>
+  </div>
+</div>
+</div>
+
+<!--footer-->
+<div class="container-fluid bg-dark text-white mt-5">
+	<div class="container">
+	<div class="row ">
+	  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 footer pt-5">
+		<p style="font-size:20px;text-transform: uppercase;font-weight: 800;" data-aos="slide-right">company name</p>
+		<p data-aos="slide-right">Here you can use rows and<br>
+		to organize your footer content.<br>
+		Lorem ipsum dolor sit amet,<br> 
+		consectetur adipisicing elit.<br></p>
+	  </div>
+	  <div class="col-xl-3 pt-5 hide-girl">
+		<span style="font-size:20px;text-transform: uppercase;font-weight: 800;" data-aos="zoom-in-left">products</span><br>
+		<p style="margin-top:3%" data-aos="slide-up">M D Bootstrap</p>
+		<p style="margin-top:-3%" data-aos="slide-up">M D Bootstrap</p>
+		<p style="margin-top:-3%" data-aos="slide-up">M D Bootstrap</p>
+		<p style="margin-top:-3%;" data-aos="slide-up">M D Bootstrap</p>
+	 </div>
+	  <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12 footer  pt-5">
+		<span style="font-size:20px;text-transform: uppercase;font-weight: 800;" class="text-center" data-aos="zoom-in-left">useful link</span><br>
+		<p style="margin-top:3%;margin-left:1%;"data-aos="fade-up">your account</p>
+		<p style="margin-top:-3%;margin-left:1%;"data-aos="fade-up">your account</p>
+		<p style="margin-top:-3%;margin-left:1%;"data-aos="fade-up">your account</p>
+		<p style="margin-top:-3%;margin-left:1%;"data-aos="fade-up">your account</p>
+	  </div>
+	  <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-12 footer pt-5 pb-3">
+		<p style="font-size:20px;text-transform: uppercase;font-weight: 800;" data-aos="slide-left">contact</p>
+		<p data-aos="fade-up"><i class="fa fa-home" aria-hidden="true" style="font-size:20px;"></i>&nbsp; Aurangabad, 431001,</p>
+		<p data-aos="fade-up"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp; info@gmail.com</p>
+		<p data-aos="fade-up"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp; + 01 234 567 88</p>
+		<p data-aos="fade-up"><i class="fa fa-print" aria-hidden="true"></i>&nbsp; + 01 234 567 89</p>
+	  </div>
+	</div>
+  </div>
+  <hr style="color:white;width:100%;border:1px solid">
+  <div class="container mt-4 pb-4">
+	<div class="row">
+	  <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
+		<p>© 2021 Copyright:<span style="font-weight:600">Government College of Engineering, Aurangabad</span></p>
+	  </div>
+	  <div class="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6 icon-head">
+		<span class="icons-2"><i class="fa fa-facebook" aria-hidden="true"></i></span>
+		<span class="icons-3"><i class="fa fa-twitter" aria-hidden="true"></i></span>
+		<span class="icons-1"><i class="fa fa-google-plus" aria-hidden="true"></i></span>
+		<span class="icons"><i class="fa fa-instagram" aria-hidden="true"></i></span>
+	  </div>
+	</div>
+  </div>
+  </div>
+	<!--footer-->
+
 </body>
 </html>
 
