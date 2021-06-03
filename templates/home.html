@@ -125,83 +125,34 @@
 
 <!-- cards -->
 <div class="ui container">
-	<div class="ui four column grid">
 		<div class="row">
-			<div class="column">				
-				<div class="ui card">					
+			{% for data in itemData %}
+			<div class="col-md-4">		
+				<div class="ui card">	
+					{% for row in data %}				
 					<div class="image">
-						<a class="ui red right ribbon label">-50%</a>
-						<img src="https://mrpg.scene7.com/is/image/MRP/01_1104170929_SI_11?wid=360&hei=540&qlt=80" />
+						<a href="/productDescription?productId={{row[0]}}">
+							<img src={{ url_for('static', filename='uploads/' + row[4]) }} id="itemImage" />
+						</a>
 					</div>
+					{% endfor %}
+					{% for row in data %}
 					<div class="content">						
-						<a class="header">Denim Dress</a>
-						<div class="description">
-							Nec vestibulum eget augue sit vel varius, lacus sem.
-						</div>
+						<a class="header">{{row[1]}}</a>
 					</div>
+					{% endfor %}
+					{% for row in data %}
 					<div class="extra content">
-						<a class="ui teal tag label">R500</a>							
+						<a class="ui teal tag label">Rs {{row[2]}}</a>							
 					</div>
+					{% endfor %}
 				</div>
 			</div>
-			<div class="column">
-				<div class="ui card">
-					<div class="image">
-						<a class="ui red right ribbon label">-50%</a>
-						<img src="https://mrpg.scene7.com/is/image/MRP/01_1100211387_SI_11?wid=360&hei=540&qlt=80" />
-					</div>
-					<div class="content">
-						<a class="header">Patterned Tunic</a>
-						<div class="description">
-							Nec vestibulum eget augue sit vel varius, lacus sem.
-						</div>
-					</div>
-					<div class="extra content">
-						<a class="ui teal tag label">R460</a>	
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="ui card">
-					<div class="image">
-						<a class="ui red right ribbon label">-50%</a>
-						<img src="https://mrpg.scene7.com/is/image/MRP/01_1110210428_SI_11?wid=360&hei=540&qlt=80" />
-					</div>
-					<div class="content">
-						<a class="header">Yellow Floral Dress</a>
-						<div class="description">
-							Nec vestibulum eget augue sit vel varius, lacus sem.
-						</div>
-					</div>
-					<div class="extra content">
-						<a class="ui teal tag label">R780</a>	
-					</div>
-				</div>
-			</div>
-			<div class="column">
-				<div class="ui card">
-					<div class="image">
-						<a class="ui red right ribbon label">-50%</a>
-						<img src="https://mrpg.scene7.com/is/image/MRP/01_1150210826_SI_11?wid=360&hei=540&qlt=80" />
-					</div>
-					<div class="content">
-						<a class="header">Maroon Bodycon Dress</a>
-						<div class="description">
-							Nec vestibulum eget augue sit vel varius, lacus sem.
-						</div>
-					</div>
-					<div class="extra content">
-						<a class="ui teal tag label">R300</a>	
-					</div>
-				</div>
-			</div>
+			{% endfor %}
 		</div>	
-	</div>
 </div>
 
 <div class="spacer"></div>
-
-<p>images from Mrprice.com website</p>
 
 	<div class="display">
 		<div class="displayCategory">
