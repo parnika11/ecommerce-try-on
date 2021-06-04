@@ -363,7 +363,7 @@ def predict():
     cap=cv2.cv2.VideoCapture(0)
     ih=shirtno
     while True:
-        imgarr=["shirt1.png",'shirt2.png','shirt51.jpg','shirt6.png']
+        imgarr=["shirt6.png",'shirt2.png','shirt51.jpg','shirt1.png']
 
         #ih=input("Enter the shirt number you want to try")
         imgshirt = cv2.cv2.imread(imgarr[ih-1],1) #original img in bgr
