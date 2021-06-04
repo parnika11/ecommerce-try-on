@@ -135,7 +135,12 @@
 	</div>
 	<div id="addToCart">
 		<a href="/addToCart?productId={{request.args.get('productId')}}">Add to Cart</a>
+		<button href="http://127.0.0.1:5000/predict">Try On</button>
 	</div>
+	<form class="form-inline" action="http://127.0.0.1:5000/predict" method="post">
+		<button type="button" href="/addToCart?productId={{request.args.get('productId')}}"
+	</form>
+
 </div>
 </body>
 </html>
