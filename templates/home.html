@@ -22,6 +22,13 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
+		* {
+			box-sizing: border-box;
+		  }
+		  
+		  
+		  
+		
 		.spacer {
     height: 50px;
 }
@@ -125,28 +132,10 @@
 
 <!-- cards -->
 <div class="ui container">
-		<div class="row">
+		<div class="row" style=" float:left;" >
 			{% for data in itemData %}
-			<div class="col-md-4">		
-				<div class="ui card">	
-					{% for row in data %}				
-					<div class="image">
-						<a href="/productDescription?productId={{row[0]}}">
-							<img src={{ url_for('static', filename='uploads/' + row[4]) }} id="itemImage" />
-						</a>
-					</div>
-					{% endfor %}
-					{% for row in data %}
-					<div class="content">						
-						<a class="header">{{row[1]}}</a>
-					</div>
-					{% endfor %}
-					{% for row in data %}
-					<div class="extra content">
-						<a class="ui teal tag label">Rs {{row[2]}}</a>							
-					</div>
-					{% endfor %}
-				</div>
+			<div class="col-md-4" style=" float:left;">		
+				
 			</div>
 			{% endfor %}
 		</div>	
@@ -156,17 +145,16 @@
 
 	<div class="display">
 		<div class="displayCategory">
-			<h2>Shop by Category: </h2>
-			<ul>
+			<h2 style="text-align: center;">Shop by Category:</h2>
+			<ul style="text-align: center;">
 				{% for row in categoryData %}
-				<li><a href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a></li>
+				<li ><a href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a></li>
 				{% endfor %}
 			</ul>
 		</div>
 		<div>
-			<h2>Items</h2>
 			{% for data in itemData %}
-			<table>
+			<table align="center">
 				<tr id="productName">
 					{% for row in data %}
 					<td>
