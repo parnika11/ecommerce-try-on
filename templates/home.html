@@ -10,7 +10,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
 		crossorigin="anonymous"></script>
-
+		<script src="https://kit.fontawesome.com/c96d3752b6.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -26,9 +26,6 @@
 			box-sizing: border-box;
 		  }
 		  
-		  
-		  
-		
 		.spacer {
     height: 50px;
 }
@@ -36,123 +33,83 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="/">Virtual Try On</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="/">Home</a>
-					</li>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link " href="#" data-bs-toggle="modal" data-bs-target="#myModal">Predict</a>
-				</li>
+	{% include "nav.html" %}
 
-				<!-- Modal -->
-				<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false"
-					tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal"
-									aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<p>Select a shirt</p>
-								<form class="form-inline" action="http://127.0.0.1:5000/predict" method="post">
-									<select name="shirt" class="form-control" id="company">
-										<option value="0" selected="selected">----------Select one shirt----</option>
-										<option value="1">blue shirt</option>
-										<option value="2">Mens shirt</option>
-										<option value="3">Women shirt</option>
-										<option value="4">white shirt</option>
-									</select>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-outline-secondary"
-											data-bs-dismiss="modal">Close</button>
-										<button type="success" class="btn btn-outline-sucesss">Try</button>
-									</div>
-								</form>
-							</div> 
-							
-						</div>
-					</div>
-				</div>
-					{% if not loggedIn %}
-					<li class="nav-item">
-							<a class="nav-link" href="/loginForm">Sign In</a>
-					</li>
-					{% else %}
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false">
-							Hello, {{firstName}}
-						</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/account/orders">Your Orders</a></li>
-							<li><a class="dropdown-item" href="/account/profile">Your Profile</a></li>
-							<li>
-								<hr class="dropdown-divider">
-							</li>
-							<li><a class="dropdown-item" href="/logout">Sign Out</a></li>
-						</ul>
-					</li>
-					{% endif %}
-					<li class="nav-item">
-						<a class="nav-link " href="/cart">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-								<path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-							  </svg>
-							  <span class="badge rounded-pill bg-dark">{{noOfItems}}</span>
-					</a>
-				
-				</ul>
-				<form class="d-flex">
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
-				</form>
-			</div>
-		</div>
-	</nav>
-	<!-- header -->
-<div class="ui container pad-top-30 pad-bottom-30">
-	<div class="center aligned segment">
-		<div class="ui horizontal divider">Monthly Specials</div>
-	</div>	
-</div>
-
-<div class="spacer"></div>
-
-<!-- cards -->
-<div class="ui container">
-		<div class="row" style=" float:left;" >
-			{% for data in itemData %}
-			<div class="col-md-4" style=" float:left;">		
-				
-			</div>
-			{% endfor %}
-		</div>	
-</div>
-
-<div class="spacer"></div>
-
-	<div class="display">
-		<div class="displayCategory">
-			<h2 style="text-align: center;">Shop by Category:</h2>
-			<ul style="text-align: center;">
-				{% for row in categoryData %}
-				<li ><a href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a></li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div>
+<nav class="navbar navbar-main navbar-expand-lg navbar-light border-bottom">
+	<div class="container">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-controls="main_nav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+  
+	  <div class="collapse navbar-collapse" id="main_nav">
+		<ul class="navbar-nav">
+			{% for row in categoryData %}
+		  <li class="nav-item">
+			<a class="nav-link" href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a>
+		  </li>
+		  {% endfor %}
+		</ul>
+	  </div> <!-- collapse .// -->
+	</div> <!-- container .// -->
+  </nav>
+  <div class="spacer"></div>
+  <section class="section-intro padding-y-sm">
+	<div class="container">
+	
+	<div class="intro-banner-wrap">
+	  <img src="/static/images/bg.png" class="img-fluid rounded">
+	</div>
+	
+	</div> <!-- container //  -->
+	</section>
+	<div class="spacer"></div>
+	<!-- ========================= SECTION INTRO END// ========================= -->
+	
+	
+	<!-- ========================= SECTION FEATURE ========================= -->
+	<section class="section-content padding-y-sm">
+	<div class="container">
+	<article class="card card-body">
+	
+	
+	<div class="row">
+	  <div class="col-md-4">  
+		<figure class="item-feature">
+		  <span class="text-primary"><i class="fa fa-2x fa-truck"></i></span>
+		  <figcaption class="pt-3">
+			<h5 class="title">Fast delivery</h5>
+			<p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore </p>
+		  </figcaption>
+		</figure> <!-- iconbox // -->
+	  </div><!-- col // -->
+	  <div class="col-md-4">
+		<figure  class="item-feature">
+		  <span class="text-primary"><i class="fa fa-2x fa-landmark"></i></span>  
+		  <figcaption class="pt-3">
+			<h5 class="title">Creative Strategy</h5>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			 </p>
+		  </figcaption>
+		</figure> <!-- iconbox // -->
+	  </div><!-- col // -->
+		<div class="col-md-4">
+		<figure  class="item-feature">
+		  <span class="text-primary"><i class="fa fa-2x fa-lock"></i></span>
+		  <figcaption class="pt-3">
+			<h5 class="title">High secured </h5>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			 </p>
+		  </figcaption>
+		</figure> <!-- iconbox // -->
+	  </div> <!-- col // -->
+	</div>
+	</article>
+	
+	</div> <!-- container .//  -->
+	</section>
+	<div class="spacer"></div>
+		<!-- <div>
 			{% for data in itemData %}
 			<table align="center">
 				<tr id="productName">
@@ -180,8 +137,22 @@
 				</tr>
 			</table>
 			{% endfor %}
-		</div>
-	</div>
-</body>
+		</div>  -->
+		
+		 <div class="container px-4">
+			{% for data in itemData %}
+			<div class="row gx-5">
+			  {% for row in data %}
+			  <div class="col">
+				<div class="p-3 border" align="center"><a href="/productDescription?productId={{row[0]}}">
+					<img src={{ url_for('static', filename='uploads/' + row[4]) }} id="itemImage" />
+				</a></div>
+			  </div>
+			  {% endfor %}
+			</div>
+			{% endfor %}
 
+		  </div> 
+		{% include "footer.html" %}
+		</body>
 </html>
