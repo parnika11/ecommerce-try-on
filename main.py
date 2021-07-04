@@ -412,12 +412,10 @@ def predict():
         imgarr = ["shirt6.png", 'shirt2.png', 'shirtt1.png', 'shirtt2.png', 'shirtt3.png',
                   'shirtt4.png', 'shirt5.png', 'shirtt6.png', 'shirtt7.png', 'shirtt8.png']
 
-        #ih=input("Enter the shirt number you want to try")
         imgshirt = cv2.cv2.imread(imgarr[ih-1], 1)  # original img in bgr
         if ih == 3:
             shirtgray = cv2.cv2.cvtColor(
                 imgshirt, cv2.cv2.COLOR_BGR2GRAY)  # grayscale conversion
-            # there may be some issues with image threshold...depending on the color/contrast of image
             ret, orig_masks_inv = cv2.cv2.threshold(
                 shirtgray, 200, 255, cv2.cv2.THRESH_BINARY)
             orig_masks = cv2.cv2.bitwise_not(orig_masks_inv)
@@ -425,7 +423,6 @@ def predict():
         else:
             shirtgray = cv2.cv2.cvtColor(
                 imgshirt, cv2.cv2.COLOR_BGR2GRAY)  # grayscale conversion
-            # there may be some issues with image threshold...depending on the color/contrast of image
             ret, orig_masks = cv2.cv2.threshold(
                 shirtgray, 0, 255, cv2.cv2.THRESH_BINARY)
             orig_masks_inv = cv2.cv2.bitwise_not(orig_masks)
@@ -440,9 +437,7 @@ def predict():
         width = img.shape[1]
         resizewidth = int(width*3/2)
         resizeheight = int(height*3/2)
-        #img = cv2.cv2.resize(img[:,:,0:3],(1000,1000), interpolation = cv2.cv2.INTER_AREA)
         cv2.cv2.namedWindow("img", cv2.cv2.WINDOW_NORMAL)
-        # cv2.cv2.setWindowProperty('img',cv2.cv2.WND_PROP_FULLSCREEN,cv2.cv2.cv.CV_WINDOW_FULLSCREEN)
         cv2.cv2.resizeWindow("img", (int(width*3/2), int(height*3/2)))
         gray = cv2.cv2.cvtColor(img, cv2.cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
@@ -451,17 +446,13 @@ def predict():
             cv2.cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
             cv2.cv2.rectangle(img, (100, 200), (312, 559), (255, 255, 255), 2)
 
-    # |||||||||||||||||||||||||||||||SHIRT||||||||||||||||||||||||||||||||||||||||
 
             shirtWidth = 3 * w  # approx wrt face width
-            # preserving aspect ratio of original image..
             shirtHeight = shirtWidth * origshirtHeight / origshirtWidth
-            # Center the shirt..just random calculations..
             x1s = x-w
             x2s = x1s+3*w
             y1s = y+h
             y2s = y1s+h*4
-            # Check for clipping(whetehr x1 is coming out to be negative or not..)
 
             if x1s < 0:
                 x1s = 0
@@ -474,11 +465,6 @@ def predict():
                 temp = y1s
                 y1s = y2s
                 y2s = temp
-            """
-            if y+h >=y1s:
-                y1s = 0
-                y2s=0
-            """
             # Re-calculate the width and height of the shirt image(to resize the image when it wud be pasted)
             shirtWidth = int(abs(x2s - x1s))
             shirtHeight = int(abs(y2s - y1s))
@@ -486,25 +472,6 @@ def predict():
             y2s = int(y2s)
             x1s = int(x1s)
             x2s = int(x2s)
-            """
-            if not y1s == 0 and y2s == 0:
-                # Re-size the original image and the masks to the shirt sizes
-                shirt = cv2.cv2.resize(imgshirt, (shirtWidth,shirtHeight), interpolation = cv2.cv2.INTER_AREA) #resize all,the masks you made,the originla image,everything
-                mask = cv2.cv2.resize(orig_masks, (shirtWidth,shirtHeight), interpolation = cv2.cv2.INTER_AREA)
-                masks_inv = cv2.cv2.resize(orig_masks_inv, (shirtWidth,shirtHeight), interpolation = cv2.cv2.INTER_AREA)
-                # take ROI for shirt from background equal to size of shirt image
-                rois = img[y1s:y2s, x1s:x2s]
-                    # roi_bg contains the original image only where the shirt is not
-                    # in the region that is the size of the shirt.
-                num=rois
-                roi_bgs = cv2.cv2.bitwise_and(rois,num,mask = masks_inv)
-                # roi_fg contains the image of the shirt only where the shirt is
-                roi_fgs = cv2.cv2.bitwise_and(shirt,shirt,mask = mask)
-                # join the roi_bg and roi_fg
-                dsts = cv2.cv2.add(roi_bgs,roi_fgs)
-                img[y1s:y2s, x1s:x2s] = dsts # place the joined image, saved to dst back over the original image
-            """
-            # Re-size the original image and the masks to the shirt sizes
             # resize all,the masks you made,the originla image,everything
             shirt = cv2.cv2.resize(
                 imgshirt, (shirtWidth, shirtHeight), interpolation=cv2.cv2.INTER_AREA)
@@ -518,22 +485,16 @@ def predict():
             # in the region that is the size of the shirt.
             num = rois
             roi_bgs = cv2.cv2.bitwise_and(rois, num, mask=masks_inv)
-            # roi_fg contains the image of the shirt only where the shirt is
             roi_fgs = cv2.cv2.bitwise_and(shirt, shirt, mask=mask)
-            # join the roi_bg and roi_fg
             dsts = cv2.cv2.add(roi_bgs, roi_fgs)
-            # place the joined image, saved to dst back over the original image
             img[y1s:y2s, x1s:x2s] = dsts
-            # print "blurring"
 
             break
         cv2.cv2.imshow("img", img)
-        # cv2.cv2.setMouseCallback('img',change_dress)
         if cv2.cv2.waitKey(100) == ord('q'):
             break
 
-    cap.release()                           # Destroys the cap object
-    # Destroys all the windows created by imshow
+    cap.release() 
     cv2.cv2.destroyAllWindows()
 
     return render_template('home.html')
